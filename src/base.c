@@ -23,7 +23,10 @@
  */
 
 #include "msgpackmsgpayloadfunctions.h"
+#include "bridge.h"
 #include <mama/integration/bridge/omnmmsgpayloadfunctions.h>
+#include <mama/integration/bridge/omnmmsgpayloadimpl.h>
+#include <mama/integration/msg.h>
 
 
 mama_status
@@ -467,12 +470,6 @@ msgpackmsgPayload_setParent(msgPayload msg,
 }
 
 mama_status
-msgpackmsgPayload_getByteSize(msgPayload msg,
-                              mama_size_t *size) {
-    return omnmmsgPayload_getByteSize(msg, size);
-}
-
-mama_status
 msgpackmsgPayload_getNumFields(const msgPayload msg,
                                mama_size_t *numFields) {
     return omnmmsgPayload_getNumFields(msg, numFields);
@@ -709,7 +706,7 @@ mama_status
 msgpackmsgPayload_addVectorU16(msgPayload msg,
                                const char *name,
                                mama_fid_t fid,
-                               const mama_u16_t value[],
+                               const mama_u16_t* value,
                                mama_size_t size) {
     return omnmmsgPayload_addVectorU16(msg, name, fid, value, size);
 }
@@ -775,15 +772,6 @@ msgpackmsgPayload_addVectorString(msgPayload msg,
                                   const char *value[],
                                   mama_size_t size) {
     return omnmmsgPayload_addVectorString(msg, name, fid, value, size);
-}
-
-mama_status
-msgpackmsgPayload_addVectorMsg(msgPayload msg,
-                               const char *name,
-                               mama_fid_t fid,
-                               const mamaMsg value[],
-                               mama_size_t size) {
-    return omnmmsgPayload_addVectorMsg(msg, name, fid, value, size);
 }
 
 mama_status
@@ -939,15 +927,6 @@ msgpackmsgPayload_updateSubMsg(msgPayload msg,
                                mama_fid_t fid,
                                const mamaMsg value) {
     return omnmmsgPayload_updateSubMsg(msg, name, fid, value);
-}
-
-mama_status
-msgpackmsgPayload_updateVectorMsg(msgPayload msg,
-                                  const char *name,
-                                  mama_fid_t fid,
-                                  const mamaMsg value[],
-                                  mama_size_t size) {
-    return omnmmsgPayload_updateVectorMsg(msg, name, fid, value, size);
 }
 
 mama_status

@@ -25,7 +25,7 @@ add_executable(
     unittests
     UnitTests.cpp
 )
-target_link_libraries(unittests gtest mamamsgpackmsgimpl pthread)
+target_link_libraries(unittests gtest mamamsgpackmsgimpl mamaomnmmsgimpl pthread)
 
 target_link_libraries(mamamsgpackmsgimpl wombatcommon mama msgpackc mamaomnmmsgimpl-static)
 install(TARGETS mamamsgpackmsgimpl DESTINATION lib)

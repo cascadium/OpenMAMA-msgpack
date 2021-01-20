@@ -30,6 +30,7 @@
 #include <wombat/strutils.h>
 #include <mama/integration/types.h>
 #include <msgpack.h>
+#include <wombat/memnode.h>
 
 // 0xde is the msgpack format for Map16 (up to UINT16_MAX members - should be more than enough)
 #define MAMA_PAYLOAD_ID_MSGPACK     0xde
@@ -37,10 +38,12 @@
 
 typedef struct msgpackPayloadImpl {
     msgPayload mOmnmPayload;
+    mamaPayloadBridge mThisBridge;
     msgpack_sbuffer mBuffer;
     msgpack_packer mPacker;
     msgpack_zone mDeserializationZone;
     msgpack_object mDeserializedObj;
+    memoryNode* mMamaMsgTmp;
 } msgpackPayloadImpl;
 
 #endif /* MAMA_BRIDGE_MSGPACK_MSG_PAYLOAD_H__ */
