@@ -21,13 +21,16 @@ add_library(
             bridge.h
 )
 
+target_link_libraries(mamamsgpackmsgimpl wombatcommon mama msgpackc mamaomnmmsgimpl-static)
+install(TARGETS mamamsgpackmsgimpl DESTINATION lib)
+
 add_executable(
     unittests
     UnitTests.cpp
 )
 target_link_libraries(unittests gtest mamamsgpackmsgimpl mamaomnmmsgimpl pthread)
-
-target_link_libraries(mamamsgpackmsgimpl wombatcommon mama msgpackc mamaomnmmsgimpl-static)
-install(TARGETS mamamsgpackmsgimpl DESTINATION lib)
-
-
+gtest_discover_tests(
+    unittests
+    PROPERTIES ENVIRONMENT
+        "WOMBAT_PATH=${openmama_SOURCE_DIR}/mama/c_cpp/src/examples:${openmama_SOURCE_DIR}/mama/c_cpp/src/gunittest/c"
+)

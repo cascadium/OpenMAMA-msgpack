@@ -913,6 +913,7 @@ msgpackmsgPayload_unSerialize(const msgPayload msg,
             msgpackmsgPayloadImpl_deserialize_field(impl, &kv->key, &kv->val);
         }
     }
+    impl->mLastSerializedByteSize = bufferLength;
     return MAMA_STATUS_OK;
 }
 
@@ -931,7 +932,7 @@ msgpackmsgPayload_getByteSize(msgPayload msg,
     }
     msgpackPayloadImpl *impl = NULL;
     mama_status status = omnmmsgPayloadImpl_getExtenderClosure(msg, (const void **) &impl);
-    *size == (mama_size_t)impl->mBuffer.size;
+    *size = impl->mLastSerializedByteSize;
     return status;
 }
 

@@ -44,6 +44,7 @@ typedef struct msgpackPayloadImpl {
     msgpack_zone mDeserializationZone;
     msgpack_object mDeserializedObj;
     memoryNode* mMamaMsgTmp;
+    mama_size_t mLastSerializedByteSize;
 } msgpackPayloadImpl;
 
 #endif /* MAMA_BRIDGE_MSGPACK_MSG_PAYLOAD_H__ */
