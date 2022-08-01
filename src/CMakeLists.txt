@@ -21,7 +21,7 @@ add_library(
             bridge.h
 )
 
-target_link_libraries(mamamsgpackmsgimpl wombatcommon mama msgpackc mamaomnmmsgimpl-static)
+target_link_libraries(mamamsgpackmsgimpl wombatcommon mama msgpackc mamaomnmmsgimpl)
 install(TARGETS mamamsgpackmsgimpl DESTINATION lib)
 
 add_executable(
