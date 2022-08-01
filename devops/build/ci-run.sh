@@ -61,8 +61,8 @@ fi
 
 mkdir -p $BUILD_DIR
 cd $BUILD_DIR
-export LD_LIBRARY_PATH=/opt/openmama-omnm/lib:/opt/openmama/lib
-cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/opt/openmama-omnm -DMAMA_ROOT=$OPENMAMA_INSTALL_DIR "$SOURCE_PATH_ABSOLUTE"
+export LD_LIBRARY_PATH=/opt/openmama-msgpack/lib:/opt/openmama/lib
+cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/opt/openmama-msgpack -DMAMA_ROOT=$OPENMAMA_INSTALL_DIR "$SOURCE_PATH_ABSOLUTE"
 make -j
 make install
 ctest . --timeout 120 --output-on-failure -E MsgFieldVectorBoolTests.GetVectorBoolNullField
@@ -89,11 +89,11 @@ then
     mkdir "$DIST_DIR"
 fi
 
-PACKAGE_FILE="$DIST_DIR/openmama-omnm-$VERSION-1.$DISTRIB_PACKAGE_QUALIFIER.x86_64.$PACKAGE_TYPE"
+PACKAGE_FILE="$DIST_DIR/openmama-msgpack-$VERSION-1.$DISTRIB_PACKAGE_QUALIFIER.x86_64.$PACKAGE_TYPE"
 fpm -s dir --force \
         -t $PACKAGE_TYPE \
         -m "contact@cascadium.io" \
-        --name openmama-omnm \
+        --name openmama-msgpack \
         --version $VERSION \
         --iteration 1 \
         --url "http://cascadium.io" \
@@ -101,9 +101,9 @@ fpm -s dir --force \
         -d openmama \
         -p "$PACKAGE_FILE" \
         --description "OpenMAMA OMNM payload bridge" \
-        /opt/openmama-omnm/=/opt/openmama/
+        /opt/openmama-msgpack/=/opt/openmama/
 
-if [ "true" = "$PACKAGE_UPLOAD_ENABLED" ] && [ "$CLOUDSMITH_REPOSITORY" != "none" ]
+if [ "true" = "$PACKAGE_UPLOAD_ENABLED" ]
 then
-    echo cloudsmith push $PACKAGE_TYPE "openmama/$CLOUDSMITH_REPOSITORY/$CLOUDSMITH_DISTRO_NAME/$CLOUDSMITH_DISTRO_VERSION" "${PACKAGE_FILE}"
+    echo cloudsmith push $PACKAGE_TYPE "openmama/openmama-thirdparty/$CLOUDSMITH_DISTRO_NAME/$CLOUDSMITH_DISTRO_VERSION" "${PACKAGE_FILE}"
 fi

@@ -4,6 +4,7 @@ project (OpenMAMA-msgpack)
 include(GoogleTest)
 enable_testing()
 
+set (CMAKE_CXX_STANDARD 11)
 set (MAMA_ROOT "/opt/openmama" CACHE PATH "Path to OpenMAMA installation")
 
 add_definitions(-DOPENMAMA_INTEGRATION)

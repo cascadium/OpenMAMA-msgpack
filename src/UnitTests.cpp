@@ -319,7 +319,7 @@ TEST_F(MsgpackTests, TestCodecU64)
 TEST_F(MsgpackTests, TestCodecBool)
 {
     mama_bool_t values[2] = {1, 0};
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 2; i++) {
         mama_bool_t expected = values[i];
         mama_bool_t actual = 0;
         msgpackmsgPayload_destroy (mPayloadBase);
