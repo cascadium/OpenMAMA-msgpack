@@ -25,7 +25,7 @@ UBUNTU=Ubuntu
 if [ -f /etc/redhat-release ]
 then
     DISTRIB_RELEASE=$(cat /etc/redhat-release | tr " " "\n" | egrep "^[0-9]")
-    DEPENDS_FLAGS="-d libuuid -d libevent -d ncurses -d apr -d java-11-openjdk"
+    DEPENDS_FLAGS="-d libuuid -d libevent -d ncurses -d apr"
     DISTRIB_ID=$RHEL
     PACKAGE_TYPE=rpm
     CLOUDSMITH_DISTRO_NAME=centos
@@ -39,19 +39,12 @@ then
     # Will set DISTRIB_ID and DISTRIB_RELEASE
     source /etc/lsb-release
     PACKAGE_TYPE=deb
-    DEPENDS_FLAGS="-d uuid -d libevent-dev -d libzmq3-dev -d ncurses-dev -d libapr1-dev -d openjdk-11-jdk"
+    DEPENDS_FLAGS="-d uuid -d libevent-dev -d libzmq3-dev -d ncurses-dev -d libapr1-dev"
     CLOUDSMITH_DISTRO_NAME=ubuntu
     CLOUDSMITH_DISTRO_VERSION=${DISTRIB_CODENAME}
     PACKAGE_MANAGER=apt
     apt install -y libmsgpack-dev
 fi
-
-# Set up cloudsmith repository
-curl -1sLf "https://dl.cloudsmith.io/public/openmama/openmama-experimental/cfg/setup/bash.${PACKAGE_TYPE}.sh" | bash
-curl -1sLf "https://dl.cloudsmith.io/public/openmama/openmama-thirdparty/cfg/setup/bash.${PACKAGE_TYPE}.sh" | bash
-
-# Install OpenMAMA, omnm and git
-$PACKAGE_MANAGER install -y openmama openmama-omnm git
 
 # Build the project
 if [ -d $BUILD_DIR ]
@@ -63,7 +56,7 @@ mkdir -p $BUILD_DIR
 cd $BUILD_DIR
 export LD_LIBRARY_PATH=/opt/openmama-msgpack/lib:/opt/openmama/lib
 cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/opt/openmama-msgpack -DMAMA_ROOT=$OPENMAMA_INSTALL_DIR "$SOURCE_PATH_ABSOLUTE"
-make -j
+make -j VERBOSE=1
 make install
 ctest . --timeout 120 --output-on-failure -E MsgFieldVectorBoolTests.GetVectorBoolNullField
 
