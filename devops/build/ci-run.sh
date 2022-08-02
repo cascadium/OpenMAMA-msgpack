@@ -16,7 +16,7 @@ git config --global user.name "Cascadium Devops"
 
 # Update to required cmake version
 cd /usr
-wget -c https://github.com/Kitware/CMake/releases/download/v3.19.4/cmake-3.19.4-Linux-x86_64.tar.gz -O - | tar -xz  --strip-components 1
+wget -q -c https://github.com/Kitware/CMake/releases/download/v3.19.4/cmake-3.19.4-Linux-x86_64.tar.gz -O - | tar -xz  --strip-components 1
 
 # Constants
 RHEL=CentOS

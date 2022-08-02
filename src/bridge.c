@@ -347,11 +347,12 @@ msgpackmsgPayloadImpl_serialize_field(msgpackPayloadImpl *impl,
         case MAMA_FIELD_TYPE_VECTOR_BOOL: {
             const mama_bool_t* value;
             mama_size_t valueLen;
+            mama_size_t i;
 
             msgpackmsgFieldPayload_getVectorBool(field, &value, &valueLen);
 
             msgpack_pack_array(&impl->mPacker, valueLen);
-            for (mama_size_t i = 0; i < valueLen; i++)
+            for (i = 0; i < valueLen; i++)
                 if (value[i])
                     msgpack_pack_true(&impl->mPacker);
                 else
@@ -362,9 +363,10 @@ msgpackmsgPayloadImpl_serialize_field(msgpackPayloadImpl *impl,
         case MAMA_FIELD_TYPE_VECTOR_I8: {
             const mama_i8_t* value;
             mama_size_t valueLen;
+            mama_size_t i;
             msgpackmsgFieldPayload_getVectorI8(field, &value, &valueLen);
             msgpack_pack_array(&impl->mPacker, valueLen);
-            for (mama_size_t i = 0; i < valueLen; i++)
+            for (i = 0; i < valueLen; i++)
                 msgpack_pack_int8(&impl->mPacker, value[i]);
 
             break;
@@ -372,9 +374,10 @@ msgpackmsgPayloadImpl_serialize_field(msgpackPayloadImpl *impl,
         case MAMA_FIELD_TYPE_VECTOR_U8: {
             const mama_u8_t* value;
             mama_size_t valueLen;
+            mama_size_t i;
             msgpackmsgFieldPayload_getVectorU8(field, &value, &valueLen);
             msgpack_pack_array(&impl->mPacker, valueLen);
-            for (mama_size_t i = 0; i < valueLen; i++)
+            for (i = 0; i < valueLen; i++)
                 msgpack_pack_uint8(&impl->mPacker, value[i]);
 
             break;
@@ -382,9 +385,10 @@ msgpackmsgPayloadImpl_serialize_field(msgpackPayloadImpl *impl,
         case MAMA_FIELD_TYPE_VECTOR_I16: {
             const mama_i16_t* value;
             mama_size_t valueLen;
+            mama_size_t i;
             msgpackmsgFieldPayload_getVectorI16(field, &value, &valueLen);
             msgpack_pack_array(&impl->mPacker, valueLen);
-            for (mama_size_t i = 0; i < valueLen; i++)
+            for (i = 0; i < valueLen; i++)
                 msgpack_pack_int16(&impl->mPacker, value[i]);
 
             break;
@@ -392,9 +396,10 @@ msgpackmsgPayloadImpl_serialize_field(msgpackPayloadImpl *impl,
         case MAMA_FIELD_TYPE_VECTOR_U16: {
             const mama_u16_t* value;
             mama_size_t valueLen;
+            mama_size_t i;
             msgpackmsgFieldPayload_getVectorU16(field, &value, &valueLen);
             msgpack_pack_array(&impl->mPacker, valueLen);
-            for (mama_size_t i = 0; i < valueLen; i++)
+            for (i = 0; i < valueLen; i++)
                 msgpack_pack_uint16(&impl->mPacker, value[i]);
 
             break;
@@ -402,9 +407,10 @@ msgpackmsgPayloadImpl_serialize_field(msgpackPayloadImpl *impl,
         case MAMA_FIELD_TYPE_VECTOR_I32: {
             const mama_i32_t* value;
             mama_size_t valueLen;
+            mama_size_t i;
             msgpackmsgFieldPayload_getVectorI32(field, &value, &valueLen);
             msgpack_pack_array(&impl->mPacker, valueLen);
-            for (mama_size_t i = 0; i < valueLen; i++)
+            for (i = 0; i < valueLen; i++)
                 msgpack_pack_int32(&impl->mPacker, value[i]);
 
             break;
@@ -412,9 +418,10 @@ msgpackmsgPayloadImpl_serialize_field(msgpackPayloadImpl *impl,
         case MAMA_FIELD_TYPE_VECTOR_U32: {
             const mama_u32_t* value;
             mama_size_t valueLen;
+            mama_size_t i;
             msgpackmsgFieldPayload_getVectorU32(field, &value, &valueLen);
             msgpack_pack_array(&impl->mPacker, valueLen);
-            for (mama_size_t i = 0; i < valueLen; i++)
+            for (i = 0; i < valueLen; i++)
                 msgpack_pack_uint32(&impl->mPacker, value[i]);
 
             break;
@@ -422,9 +429,10 @@ msgpackmsgPayloadImpl_serialize_field(msgpackPayloadImpl *impl,
         case MAMA_FIELD_TYPE_VECTOR_I64: {
             const mama_i64_t* value;
             mama_size_t valueLen;
+            mama_size_t i;
             msgpackmsgFieldPayload_getVectorI64(field, &value, &valueLen);
             msgpack_pack_array(&impl->mPacker, valueLen);
-            for (mama_size_t i = 0; i < valueLen; i++)
+            for (i = 0; i < valueLen; i++)
                 msgpack_pack_int64(&impl->mPacker, value[i]);
 
             break;
@@ -432,9 +440,10 @@ msgpackmsgPayloadImpl_serialize_field(msgpackPayloadImpl *impl,
         case MAMA_FIELD_TYPE_VECTOR_U64: {
             const mama_u64_t* value;
             mama_size_t valueLen;
+            mama_size_t i;
             msgpackmsgFieldPayload_getVectorU64(field, &value, &valueLen);
             msgpack_pack_array(&impl->mPacker, valueLen);
-            for (mama_size_t i = 0; i < valueLen; i++)
+            for (i = 0; i < valueLen; i++)
                 msgpack_pack_uint64(&impl->mPacker, value[i]);
 
             break;
@@ -442,9 +451,10 @@ msgpackmsgPayloadImpl_serialize_field(msgpackPayloadImpl *impl,
         case MAMA_FIELD_TYPE_VECTOR_F32: {
             const mama_f32_t* value;
             mama_size_t valueLen;
+            mama_size_t i;
             msgpackmsgFieldPayload_getVectorF32(field, &value, &valueLen);
             msgpack_pack_array(&impl->mPacker, valueLen);
-            for (mama_size_t i = 0; i < valueLen; i++)
+            for (i = 0; i < valueLen; i++)
                 msgpack_pack_float(&impl->mPacker, value[i]);
 
             break;
@@ -452,9 +462,10 @@ msgpackmsgPayloadImpl_serialize_field(msgpackPayloadImpl *impl,
         case MAMA_FIELD_TYPE_VECTOR_F64: {
             const mama_f64_t* value;
             mama_size_t valueLen;
+            mama_size_t i;
             msgpackmsgFieldPayload_getVectorF64(field, &value, &valueLen);
             msgpack_pack_array(&impl->mPacker, valueLen);
-            for (mama_size_t i = 0; i < valueLen; i++)
+            for (i = 0; i < valueLen; i++)
                 msgpack_pack_double(&impl->mPacker, value[i]);
 
             break;
@@ -462,9 +473,10 @@ msgpackmsgPayloadImpl_serialize_field(msgpackPayloadImpl *impl,
         case MAMA_FIELD_TYPE_VECTOR_STRING: {
             const char** value;
             mama_size_t valueLen;
+            mama_size_t i;
             msgpackmsgFieldPayload_getVectorString(field, &value, &valueLen);
             msgpack_pack_array(&impl->mPacker, valueLen);
-            for (mama_size_t i = 0; i < valueLen; i++) {
+            for (i = 0; i < valueLen; i++) {
                 size_t slen = strlenEx(value[i]);
                 msgpack_pack_str(&impl->mPacker, slen);
                 msgpack_pack_str_body(&impl->mPacker, value[i], slen);
@@ -490,11 +502,12 @@ msgpackmsgPayloadImpl_serialize_field(msgpackPayloadImpl *impl,
         case MAMA_FIELD_TYPE_VECTOR_MSG: {
             const msgPayload* value = NULL;
             mama_size_t valueLen;
+            mama_size_t i = 0;
 
             msgpackmsgFieldPayload_getVectorMsg(field, &value, &valueLen);
             // This is a vector of messages... so note that this is an array of this length
             msgpack_pack_array(&impl->mPacker, valueLen);
-            for (mama_size_t i = 0; i < valueLen; i++) {
+            for (i = 0; i < valueLen; i++) {
                 msgPayloadIter iter = NULL;
                 mama_size_t numFields;
                 msgpackmsgPayload_getNumFields(value[i], &numFields);
@@ -645,11 +658,12 @@ msgpackmsgPayloadImpl_deserialize_field(msgpackPayloadImpl *impl,
             mamaMsg subMsg = msgpackmsgPayloadImpl_getCachedMamaMsg(impl, 0);
             msgPayload payload;
             mamaMsgImpl_getPayload(subMsg, &payload);
+            size_t i = 0;
 
             msgpackPayloadImpl *implPayload = NULL;
             omnmmsgPayloadImpl_getExtenderClosure(payload, (const void **) &implPayload);
 
-            for (size_t i = 0; i < value->via.map.size; i++) {
+            for (i = 0; i < value->via.map.size; i++) {
                 msgpack_object_kv* kv = &value->via.map.ptr[i];
                 msgpackmsgPayloadImpl_deserialize_field(implPayload,
                                                         &kv->key,
@@ -667,39 +681,42 @@ msgpackmsgPayloadImpl_deserialize_field(msgpackPayloadImpl *impl,
                 switch(val[0].type) {
                     case MSGPACK_OBJECT_BOOLEAN: {
                         mama_bool_t elements[len];
-                        for (size_t i = 0; i < len; i++) {
+                        size_t i = 0;
+                        for (i = 0; i < len; i++) {
                             elements[i] = val[i].via.boolean;
                         }
                         msgpackmsgPayload_addVectorBool(impl->mOmnmPayload, name, fid, elements, len);
                         break;
                     }
                     case MSGPACK_OBJECT_POSITIVE_INTEGER: {
+                        size_t i = 0;
                         uint64_t maxVal = 0;
-                        for (size_t i = 0; i < len; i++)
+                        for (i = 0; i < len; i++)
                             if(val[i].via.u64 > maxVal)
                                 maxVal = val[i].via.u64;
 
+                        i = 0;
                         if (maxVal <= UINT8_MAX) {
                             mama_u8_t elements[len];
-                            for (size_t i = 0; i < len; i++) {
+                            for (i = 0; i < len; i++) {
                                 elements[i] = (mama_u8_t)val[i].via.u64;
                             }
                             msgpackmsgPayload_addVectorU8(impl->mOmnmPayload, name, fid, elements, len);
                         } else if (maxVal <= UINT16_MAX) {
                             mama_u16_t elements[len];
-                            for (size_t i = 0; i < len; i++) {
+                            for (i = 0; i < len; i++) {
                                 elements[i] = (mama_u16_t)val[i].via.u64;
                             }
                             msgpackmsgPayload_addVectorU16(impl->mOmnmPayload, name, fid, elements, len);
                         } else if (maxVal <= UINT32_MAX) {
                             mama_u32_t elements[len];
-                            for (size_t i = 0; i < len; i++) {
+                            for (i = 0; i < len; i++) {
                                 elements[i] = (mama_u32_t)val[i].via.u64;
                             }
                             msgpackmsgPayload_addVectorU32(impl->mOmnmPayload, name, fid, elements, len);
                         } else {
                             mama_u64_t elements[len];
-                            for (size_t i = 0; i < len; i++) {
+                            for (i = 0; i < len; i++) {
                                 elements[i] = (mama_u64_t)val[i].via.u64;
                             }
                             msgpackmsgPayload_addVectorU64(impl->mOmnmPayload, name, fid, elements, len);
@@ -709,34 +726,36 @@ msgpackmsgPayloadImpl_deserialize_field(msgpackPayloadImpl *impl,
                     case MSGPACK_OBJECT_NEGATIVE_INTEGER: {
                         int64_t maxVal = 0;
                         int64_t minVal = 0;
-                        for (size_t i = 0; i < len; i++) {
+                        size_t i = 0;
+                        for (i = 0; i < len; i++) {
                             if (val[i].via.i64 > maxVal)
                                 maxVal = val[i].via.i64;
                             if (val[i].via.i64 < minVal)
                                 minVal = val[i].via.i64;
                         }
 
+                        i = 0;
                         if (minVal >= INT8_MIN && maxVal <= INT8_MAX) {
                             mama_i8_t elements[len];
-                            for (size_t i = 0; i < len; i++) {
+                            for (i = 0; i < len; i++) {
                                 elements[i] = (mama_i8_t)val[i].via.i64;
                             }
                             msgpackmsgPayload_addVectorI8(impl->mOmnmPayload, name, fid, elements, len);
                         } else if (minVal >= INT16_MIN && maxVal <= INT16_MAX) {
                             mama_i16_t elements[len];
-                            for (size_t i = 0; i < len; i++) {
+                            for (i = 0; i < len; i++) {
                                 elements[i] = (mama_i16_t)val[i].via.i64;
                             }
                             msgpackmsgPayload_addVectorI16(impl->mOmnmPayload, name, fid, elements, len);
                         } else if (minVal >= INT32_MIN && maxVal <= INT32_MAX) {
                             mama_i32_t elements[len];
-                            for (size_t i = 0; i < len; i++) {
+                            for (i = 0; i < len; i++) {
                                 elements[i] = (mama_i32_t)val[i].via.i64;
                             }
                             msgpackmsgPayload_addVectorI32(impl->mOmnmPayload, name, fid, elements, len);
                         } else {
                             mama_i64_t elements[len];
-                            for (size_t i = 0; i < len; i++) {
+                            for (i = 0; i < len; i++) {
                                 elements[i] = (mama_i64_t)val[i].via.i64;
                             }
                             msgpackmsgPayload_addVectorI64(impl->mOmnmPayload, name, fid, elements, len);
@@ -745,7 +764,8 @@ msgpackmsgPayloadImpl_deserialize_field(msgpackPayloadImpl *impl,
                     }
                     case MSGPACK_OBJECT_FLOAT32: {
                         mama_f32_t elements[len];
-                        for (size_t i = 0; i < len; i++) {
+                        size_t i = 0;
+                        for (i = 0; i < len; i++) {
                             elements[i] = (mama_f32_t)val[i].via.f64;
                         }
                         msgpackmsgPayload_addVectorF32(impl->mOmnmPayload, name, fid, elements, len);
@@ -753,7 +773,8 @@ msgpackmsgPayloadImpl_deserialize_field(msgpackPayloadImpl *impl,
                     }
                     case MSGPACK_OBJECT_FLOAT64: {
                         mama_f64_t elements[len];
-                        for (size_t i = 0; i < len; i++) {
+                        size_t i = 0;
+                        for (i = 0; i < len; i++) {
                             elements[i] = (mama_f64_t)val[i].via.f64;
                         }
                         msgpackmsgPayload_addVectorF64(impl->mOmnmPayload, name, fid, elements, len);
@@ -761,7 +782,8 @@ msgpackmsgPayloadImpl_deserialize_field(msgpackPayloadImpl *impl,
                     }
                     case MSGPACK_OBJECT_STR: {
                         char* elements[len];
-                        for (size_t i = 0; i < len; i++) {
+                        size_t i = 0;
+                        for (i = 0; i < len; i++) {
                             elements[i] = (char*)val[i].via.str.ptr;
                             elements[i][val[i].via.str.size] = '\0';
                         }
@@ -770,7 +792,9 @@ msgpackmsgPayloadImpl_deserialize_field(msgpackPayloadImpl *impl,
                     }
                     case MSGPACK_OBJECT_MAP: {
                         mamaMsg elements[len];
-                        for (size_t i = 0; i < len; i++) {
+                        size_t i = 0;
+                        for (i = 0; i < len; i++) {
+                            size_t j = 0;
                             elements[i] = msgpackmsgPayloadImpl_getCachedMamaMsg(impl, i);
                             msgPayload payload;
                             mamaMsgImpl_getPayload(elements[i], &payload);
@@ -778,7 +802,7 @@ msgpackmsgPayloadImpl_deserialize_field(msgpackPayloadImpl *impl,
                             msgpackPayloadImpl *implPayload = NULL;
                             omnmmsgPayloadImpl_getExtenderClosure(payload, (const void **) &implPayload);
 
-                            for (size_t j = 0; j < val[i].via.map.size; j++) {
+                            for (j = 0; j < val[i].via.map.size; j++) {
                                 msgpack_object_kv* kv = &val[i].via.map.ptr[j];
                                 msgpackmsgPayloadImpl_deserialize_field(implPayload,
                                                                         &kv->key,
@@ -853,31 +877,31 @@ msgpackmsgPayload_unSerialize(const msgPayload msg,
                               mama_size_t bufferLength) {
     // Reading from msgpack
 
-    //positive fixint	0xxxxxxx	0x00 - 0x7f [< 128]             mama_i8_t
-    //negative fixint	111xxxxx	0xe0 - 0xff [> -32]             mama_i8_t
-    //fixmap	        1000xxxx	0x80 - 0x8f [< 16 elements]     mamaMsg
-    //fixarray	        1001xxxx	0x90 - 0x9f [< 16 elements]     vector<type>
-    //fixstr	        101xxxxx	0xa0 - 0xbf [< 16 elements]     string
-    //false	            11000010	0xc2                            mama_bool_t
-    //true	            11000011	0xc3                            mama_bool_t
-    //bin 8	            11000100	0xc4                            opaque
-    //bin 16	        11000101	0xc5                            opaque
-    //bin 32	        11000110	0xc6                            opaque
-    //float 32	        11001010	0xca                            mama_f32_t
-    //float 64	        11001011	0xcb                            mama_f64_t
-    //uint 8	        11001100	0xcc                            mama_u8_t
-    //uint 16	        11001101	0xcd                            mama_u16_t
-    //uint 32	        11001110	0xce                            mama_u32_t
-    //uint 64	        11001111	0xcf                            mama_u64_t
-    //int 8	            11010000	0xd0                            mama_i8_t
-    //int 16	        11010001	0xd1                            mama_i16_t
-    //int 32	        11010010	0xd2                            mama_i32_t
-    //int 64	        11010011	0xd3                            mama_i64_t
-    //str 8	            11011001	0xd9                            string
-    //str 16	        11011010	0xda                            string
-    //str 32	        11011011	0xdb                            string
-    //array 16	        11011110	0xde                            vector<type from first element>
-    //map 16	        11011110	0xde                            mamaMsg
+    //positive fixint    0xxxxxxx    0x00 - 0x7f [< 128]             mama_i8_t
+    //negative fixint    111xxxxx    0xe0 - 0xff [> -32]             mama_i8_t
+    //fixmap             1000xxxx    0x80 - 0x8f [< 16 elements]     mamaMsg
+    //fixarray           1001xxxx    0x90 - 0x9f [< 16 elements]     vector<type>
+    //fixstr             101xxxxx    0xa0 - 0xbf [< 16 elements]     string
+    //false              11000010    0xc2                            mama_bool_t
+    //true               11000011    0xc3                            mama_bool_t
+    //bin 8              11000100    0xc4                            opaque
+    //bin 16             11000101    0xc5                            opaque
+    //bin 32             11000110    0xc6                            opaque
+    //float 32           11001010    0xca                            mama_f32_t
+    //float 64           11001011    0xcb                            mama_f64_t
+    //uint 8             11001100    0xcc                            mama_u8_t
+    //uint 16            11001101    0xcd                            mama_u16_t
+    //uint 32            11001110    0xce                            mama_u32_t
+    //uint 64            11001111    0xcf                            mama_u64_t
+    //int 8              11010000    0xd0                            mama_i8_t
+    //int 16             11010001    0xd1                            mama_i16_t
+    //int 32             11010010    0xd2                            mama_i32_t
+    //int 64             11010011    0xd3                            mama_i64_t
+    //str 8              11011001    0xd9                            string
+    //str 16             11011010    0xda                            string
+    //str 32             11011011    0xdb                            string
+    //array 16           11011110    0xde                            vector<type from first element>
+    //map 16             11011110    0xde                            mamaMsg
 
     // Not mapped:
     //   - nil
@@ -908,7 +932,8 @@ msgpackmsgPayload_unSerialize(const msgPayload msg,
     // This will return a MAP
     if (deserialized.type == MSGPACK_OBJECT_MAP) {
         msgpack_object_map* map = &deserialized.via.map;
-        for (int i = 0; i < map->size; i++) {
+    int i = 0;
+        for (i = 0; i < map->size; i++) {
             msgpack_object_kv* kv = &map->ptr[i];
             msgpackmsgPayloadImpl_deserialize_field(impl, &kv->key, &kv->val);
         }
@@ -983,8 +1008,9 @@ msgpackmsgPayload_updateVectorMsg(msgPayload msg,
         return MAMA_STATUS_NULL_ARG;
     }
     mama_status status = omnmmsgPayloadImpl_getExtenderClosure(msg, (const void **) &impl);
+    mama_size_t i = 0;
     // Translate msgpack encoded messages to omnm encoded messages
-    for (mama_size_t i = 0; i < size; i++) {
+    for (i = 0; i < size; i++) {
         msgPayload payload = NULL;
         mamaMsgImpl_getPayload(value[i], &payload);
         payloads[i] = payload;
