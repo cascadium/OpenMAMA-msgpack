@@ -65,24 +65,24 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: windows-2016
-            platform: x86
-            generator: Visual Studio 15 2017
-            vcver: msvc2017
-          - os: windows-2016
-            platform: x64
-            generator: Visual Studio 15 2017 Win64
-            vcver: msvc2017
           - os: windows-2019
             platform: x86
             generator: Visual Studio 16 2019
+            vcver: msvc2019
+          - os: windows-2019
+            platform: x64
+            generator: Visual Studio 16 2019 Win64
+            vcver: msvc2019
+          - os: windows-2022
+            platform: x86
+            generator: Visual Studio 17 2022
             args: -A Win32
-            vcver: msvc2019
-          - os: windows-2019
+            vcver: msvc2022
+          - os: windows-2022
             platform: x64
-            generator: Visual Studio 16 2019
+            generator: Visual Studio 17 2022
             args: -A x64
-            vcver: msvc2019
+            vcver: msvc2022
     steps:
     - name: Check out the code
       uses: actions/checkout@v1
