@@ -54,7 +54,7 @@ fi
 
 mkdir -p $BUILD_DIR
 cd $BUILD_DIR
-export LD_LIBRARY_PATH=/opt/openmama-msgpack/lib:/opt/openmama/lib
+export LD_LIBRARY_PATH=$(echo $(find "$BUILD_DIR" -name "*.so" -exec dirname {} \; | sort -u | tr "\n" ":"))
 cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/opt/openmama-msgpack -DMAMA_ROOT=$OPENMAMA_INSTALL_DIR "$SOURCE_PATH_ABSOLUTE"
 make -j VERBOSE=1
 make install
