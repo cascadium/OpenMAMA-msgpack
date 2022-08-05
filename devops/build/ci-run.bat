@@ -1,10 +1,9 @@
 set /p VERSION=<%GITHUB_WORKSPACE%\VERSION
 set OPENMAMA_INSTALL_DIR=%GITHUB_WORKSPACE%\openmama-omnm.%VCVER%.%PLATFORM%
+set PATH=C:\Program Files (x86)\Gow\bin;C:\vcpkg\installed\%PLATFORM%-windows\bin;%OPENMAMA_INSTALL_DIR%\bin;%PATH%
 
-set PATH=C:\vcpkg\installed\%PLATFORM%-windows\bin;%OPENMAMA_INSTALL_DIR%\bin;%PATH%
-
-choco install --no-progress -y unzip cmake || goto error
-vcpkg install openmama:%PLATFORM%-windows gtest:%PLATFORM%-windows || goto error
+choco install --no-progress -y unzip gow wget cmake || goto error
+vcpkg install libevent:%PLATFORM%-windows apr:%PLATFORM%-windows apr-util:%PLATFORM%-windows || goto error
 
 mkdir %GITHUB_WORKSPACE%\build || goto error
 cd %GITHUB_WORKSPACE%\build || goto error
