@@ -11,7 +11,7 @@ set (MAMA_ROOT "/opt/openmama" CACHE PATH "Path to OpenMAMA installation")
 add_definitions(-DOPENMAMA_INTEGRATION)
 
 if (MSVC)
-  set (OPENMAMA_LIBS libmamacmd libwombatcommonmd)
+  set (OPENMAMA_LIBS mama wombatcommon)
 else (NOT MSVC)
   set (OPENMAMA_LIBS mama pthread wombatcommon)
 endif()
