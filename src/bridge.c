@@ -680,12 +680,13 @@ msgpackmsgPayloadImpl_deserialize_field(msgpackPayloadImpl *impl,
             if (len > 0) {
                 switch(val[0].type) {
                     case MSGPACK_OBJECT_BOOLEAN: {
-                        mama_bool_t elements[len];
+                        mama_bool_t* elements = (mama_bool_t*) calloc (len, sizeof(mama_bool_t));
                         size_t i = 0;
                         for (i = 0; i < len; i++) {
                             elements[i] = val[i].via.boolean;
                         }
                         msgpackmsgPayload_addVectorBool(impl->mOmnmPayload, name, fid, elements, len);
+                        free(elements);
                         break;
                     }
                     case MSGPACK_OBJECT_POSITIVE_INTEGER: {
@@ -697,29 +698,33 @@ msgpackmsgPayloadImpl_deserialize_field(msgpackPayloadImpl *impl,
 
                         i = 0;
                         if (maxVal <= UINT8_MAX) {
-                            mama_u8_t elements[len];
+                            mama_u8_t* elements = (mama_u8_t*) calloc (len, sizeof(mama_u8_t));
                             for (i = 0; i < len; i++) {
                                 elements[i] = (mama_u8_t)val[i].via.u64;
                             }
                             msgpackmsgPayload_addVectorU8(impl->mOmnmPayload, name, fid, elements, len);
+                            free(elements);
                         } else if (maxVal <= UINT16_MAX) {
-                            mama_u16_t elements[len];
+                            mama_u16_t* elements = (mama_u16_t*) calloc (len, sizeof(mama_u16_t));
                             for (i = 0; i < len; i++) {
                                 elements[i] = (mama_u16_t)val[i].via.u64;
                             }
                             msgpackmsgPayload_addVectorU16(impl->mOmnmPayload, name, fid, elements, len);
+                            free(elements);
                         } else if (maxVal <= UINT32_MAX) {
-                            mama_u32_t elements[len];
+                            mama_u32_t* elements = (mama_u32_t*) calloc (len, sizeof(mama_u32_t));
                             for (i = 0; i < len; i++) {
                                 elements[i] = (mama_u32_t)val[i].via.u64;
                             }
                             msgpackmsgPayload_addVectorU32(impl->mOmnmPayload, name, fid, elements, len);
+                            free(elements);
                         } else {
-                            mama_u64_t elements[len];
+                            mama_u64_t* elements = (mama_u64_t*) calloc (len, sizeof(mama_u64_t));
                             for (i = 0; i < len; i++) {
                                 elements[i] = (mama_u64_t)val[i].via.u64;
                             }
                             msgpackmsgPayload_addVectorU64(impl->mOmnmPayload, name, fid, elements, len);
+                            free(elements);
                         }
                         break;
                     }
@@ -736,62 +741,69 @@ msgpackmsgPayloadImpl_deserialize_field(msgpackPayloadImpl *impl,
 
                         i = 0;
                         if (minVal >= INT8_MIN && maxVal <= INT8_MAX) {
-                            mama_i8_t elements[len];
+                            mama_i8_t* elements = (mama_i8_t*) calloc (len, sizeof(mama_i8_t));
                             for (i = 0; i < len; i++) {
                                 elements[i] = (mama_i8_t)val[i].via.i64;
                             }
                             msgpackmsgPayload_addVectorI8(impl->mOmnmPayload, name, fid, elements, len);
+                            free(elements);
                         } else if (minVal >= INT16_MIN && maxVal <= INT16_MAX) {
-                            mama_i16_t elements[len];
+                            mama_i16_t* elements = (mama_i16_t*) calloc (len, sizeof(mama_i16_t));
                             for (i = 0; i < len; i++) {
                                 elements[i] = (mama_i16_t)val[i].via.i64;
                             }
                             msgpackmsgPayload_addVectorI16(impl->mOmnmPayload, name, fid, elements, len);
+                            free(elements);
                         } else if (minVal >= INT32_MIN && maxVal <= INT32_MAX) {
-                            mama_i32_t elements[len];
+                            mama_i32_t* elements = (mama_i32_t*) calloc (len, sizeof(mama_i32_t));
                             for (i = 0; i < len; i++) {
                                 elements[i] = (mama_i32_t)val[i].via.i64;
                             }
                             msgpackmsgPayload_addVectorI32(impl->mOmnmPayload, name, fid, elements, len);
+                            free(elements);
                         } else {
-                            mama_i64_t elements[len];
+                            mama_i64_t* elements = (mama_i64_t*) calloc (len, sizeof(mama_i64_t));
                             for (i = 0; i < len; i++) {
                                 elements[i] = (mama_i64_t)val[i].via.i64;
                             }
                             msgpackmsgPayload_addVectorI64(impl->mOmnmPayload, name, fid, elements, len);
+                            free(elements);
                         }
                         break;
                     }
                     case MSGPACK_OBJECT_FLOAT32: {
-                        mama_f32_t elements[len];
+                        mama_f32_t* elements = (mama_f32_t*) calloc (len, sizeof(mama_f32_t));
                         size_t i = 0;
                         for (i = 0; i < len; i++) {
                             elements[i] = (mama_f32_t)val[i].via.f64;
                         }
                         msgpackmsgPayload_addVectorF32(impl->mOmnmPayload, name, fid, elements, len);
+                        free(elements);
                         break;
                     }
                     case MSGPACK_OBJECT_FLOAT64: {
-                        mama_f64_t elements[len];
+                        mama_f64_t* elements = (mama_f64_t*) calloc (len, sizeof(mama_f64_t));
                         size_t i = 0;
                         for (i = 0; i < len; i++) {
                             elements[i] = (mama_f64_t)val[i].via.f64;
                         }
                         msgpackmsgPayload_addVectorF64(impl->mOmnmPayload, name, fid, elements, len);
+                        free(elements);
                         break;
                     }
                     case MSGPACK_OBJECT_STR: {
-                        char* elements[len];
+                        char** elements = (char**) calloc (len, sizeof(char*));
                         size_t i = 0;
                         for (i = 0; i < len; i++) {
                             elements[i] = (char*)val[i].via.str.ptr;
                             elements[i][val[i].via.str.size] = '\0';
                         }
                         msgpackmsgPayload_addVectorString(impl->mOmnmPayload, name, fid, (const char**)elements, len);
+                        free(elements);
                         break;
                     }
                     case MSGPACK_OBJECT_MAP: {
-                        mamaMsg elements[len];
+                        mamaMsg* elements = (mamaMsg*) calloc (len, sizeof(mamaMsg));
                         size_t i = 0;
                         for (i = 0; i < len; i++) {
                             size_t j = 0;
@@ -810,7 +822,7 @@ msgpackmsgPayloadImpl_deserialize_field(msgpackPayloadImpl *impl,
                             }
                         }
                         msgpackmsgPayload_addVectorMsg(impl->mOmnmPayload, name, fid, elements, len);
-
+                        free(elements);
                         break;
                     }
                     case MSGPACK_OBJECT_ARRAY:
@@ -1002,12 +1014,14 @@ msgpackmsgPayload_updateVectorMsg(msgPayload msg,
                                   mama_fid_t fid,
                                   const mamaMsg value[],
                                   mama_size_t size) {
-    msgPayload payloads[size];
+    msgPayload* payloads = (msgPayload*) calloc (size, sizeof(msgPayload));
     msgpackPayloadImpl *impl = NULL;
+    mama_status status = MAMA_STATUS_OK;
     if (NULL == msg || (fid == 0 && name == NULL) || value == NULL || size == 0) {
+        free(payloads);
         return MAMA_STATUS_NULL_ARG;
     }
-    mama_status status = omnmmsgPayloadImpl_getExtenderClosure(msg, (const void **) &impl);
+    status = omnmmsgPayloadImpl_getExtenderClosure(msg, (const void **) &impl);
     mama_size_t i = 0;
     // Translate msgpack encoded messages to omnm encoded messages
     for (i = 0; i < size; i++) {
@@ -1015,6 +1029,8 @@ msgpackmsgPayload_updateVectorMsg(msgPayload msg,
         mamaMsgImpl_getPayload(value[i], &payload);
         payloads[i] = payload;
     }
-    return omnmmsgPayloadImpl_updateVectorMsgPayload(msg, name, fid, payloads, size);
+    status = omnmmsgPayloadImpl_updateVectorMsgPayload(msg, name, fid, payloads, size);
+    free(payloads);
+    return status;
 
 }

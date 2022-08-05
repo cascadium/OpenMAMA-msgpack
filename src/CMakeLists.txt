@@ -27,6 +27,16 @@ add_library(
             bridge.h
 )
 
+if(WIN32)
+    if (CMAKE_BUILD_TYPE MATCHES "Debug")
+        set(MAMA_LIB_SUFFIX "mdd")
+    else()
+        set(MAMA_LIB_SUFFIX "md")
+    endif()
+    set_target_properties(mamamsgpackmsgimpl PROPERTIES PREFIX "lib")
+    set_target_properties(mamamsgpackmsgimpl PROPERTIES OUTPUT_NAME "mamamsgpackmsgimpl${MAMA_LIB_SUFFIX}")
+endif()
+
 target_link_libraries(mamamsgpackmsgimpl wombatcommon mama msgpackc mamaomnmmsgimpl)
 install(TARGETS mamamsgpackmsgimpl DESTINATION lib)
 
@@ -34,7 +44,7 @@ add_executable(
     unittests_msgpack
     UnitTests.cpp
 )
-target_link_libraries(unittests_msgpack gtest mamamsgpackmsgimpl mamaomnmmsgimpl pthread)
+target_link_libraries(unittests_msgpack gtest mamamsgpackmsgimpl mamaomnmmsgimpl)
 gtest_discover_tests(
     unittests_msgpack
     PROPERTIES ENVIRONMENT
