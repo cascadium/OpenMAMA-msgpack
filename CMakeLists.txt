@@ -73,6 +73,10 @@ include_directories(${openmamaomnm_SOURCE_DIR}/src)
 include_directories(${openmama_BINARY_DIR}/mama/c_cpp/src/c)
 link_directories(${MAMA_ROOT}/lib)
 link_directories(${GTEST_ROOT}/lib)
+link_directories(${openmama_BINARY_DIR}/mama/c_cpp/src/c)
+link_directories(${openmama_BINARY_DIR}/mama/c_cpp/src/c/${CMAKE_BUILD_TYPE})
+link_directories(${openmama_BINARY_DIR}/common/c_cpp/src/c)
+link_directories(${openmama_BINARY_DIR}/common/c_cpp/src/c/${CMAKE_BUILD_TYPE})
 
 add_subdirectory(src)
 
